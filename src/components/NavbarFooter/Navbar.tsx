@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import {GiHamburgerMenu} from 'react-icons/gi'
+import { GiHamburgerMenu } from 'react-icons/gi'
+import { FaGlobe } from 'react-icons/fa'
 import Image from 'next/image';
 import logo from '~/logo.svg';
 import TentangKami from './TentangKamiDropdown';
@@ -14,7 +15,6 @@ function classNames(...classes : string[]) {
 export default function Navbar() {
   return (
     <Disclosure as="nav" className="bg-white relative">
-        
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 lg:py-1">
@@ -51,15 +51,14 @@ export default function Navbar() {
                   </div>
                 </div>
               </div>
-              <div className='hidden lg:flex lg:justify-end w-[30%]'>
+              <div className='hidden lg:flex lg:justify-end w-[30%] items-center'>
                 <div className='bg-[#FAE5DB] py-3 px-8 rounded-3xl font-semibold text-[#E77E49] text-sm mr-4 cursor-pointer'>Donasi</div>
-                {/* <Link href="/login">
-                  <div className='bg-[#E77E49] py-3 px-8 rounded-3xl font-semibold text-white text-sm cursor-pointer'>Masuk</div>
-                </Link> */}
+                <div className='flex items-center bg-gray-200 py-3 px-6 rounded-3xl font-semibold text-gray-700 text-sm cursor-pointer'>
+                  <FaGlobe className='mr-2' /> ID / ENG
+                </div>
               </div>
             </div>
           </div>
-                            
           <Disclosure.Panel className="lg:hidden">
             <div className="space-y-1 px-2 pt-2 pb-3 text-center">
                 <Link href="/">
@@ -76,6 +75,9 @@ export default function Navbar() {
                 </div>
                 <div className='w-full py-4'>
                   <div className='bg-[#FAE5DB] py-3 px-8 rounded-3xl font-semibold text-[#E77E49] text-sm mx-auto cursor-pointer w-fit h-fit'>Donasi</div>
+                  <div className='flex items-center bg-gray-200 py-3 px-6 rounded-3xl font-semibold text-gray-700 text-sm mx-auto cursor-pointer w-fit h-fit mt-4'>
+                    <FaGlobe className='mr-2' /> ID / ENG
+                  </div>
                   <Link href="/login">
                     <div className='bg-[#E77E49] mt-4 py-3 px-8 rounded-3xl font-semibold text-white text-sm mx-auto cursor-pointer w-fit h-fit'>Masuk</div>
                   </Link>
