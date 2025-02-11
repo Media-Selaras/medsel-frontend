@@ -51,7 +51,7 @@ export default function Informasi() {
                     'block px-4 py-2 text-sm cursor-pointer hover:bg-gray-100'
                     )}
                     >
-                  Struktur Komuntias
+                  Struktur Komunitas
                 </p>
                 </Link>
               )}
