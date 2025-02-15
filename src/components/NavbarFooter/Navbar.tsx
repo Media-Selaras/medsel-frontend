@@ -62,11 +62,11 @@ export default function Navbar() {
                         Beranda
                       </p>
                     </Link>
-                    <Link href="/artikel">
+                    {/* <Link href="/artikel">
                       <p className="relative text-slate-500 cursor-pointer hover:text-black px-3 py-2 rounded-md text-base after:content-[''] after:block after:h-0.5 after:w-full after:bg-black after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100">
                         Artikel
                       </p>
-                    </Link>
+                    </Link> */}
                     <Informasi />
                     <TentangKami />
                   </div>
