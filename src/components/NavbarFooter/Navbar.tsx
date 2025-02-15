@@ -80,7 +80,7 @@ export default function Navbar() {
 
             {/* Mobile Menu */}
             <Disclosure.Panel className="lg:hidden absolute top-16 left-0 w-full bg-white shadow-md">
-              <div className="px-4 pt-2 pb-3 space-y-4 text-center items-center space-x-6">
+              <div className="px-4 pt-2 pb-3 space-y-4 text-center items-center flex space-x-6">
   <Link href="/" className="px-6 py-3 text-gray-900 hover:bg-gray-200 rounded-md flex items-center">Beranda</Link>
   <div className="flex items-center"><Informasi /></div>
   <div className="flex items-center"><TentangKami /></div>
