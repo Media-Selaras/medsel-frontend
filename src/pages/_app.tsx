@@ -1,14 +1,17 @@
-import '@/styles/globals.css'
-import '@/styles/nprogress.css'
-import NProgress from 'nprogress'
+import '@/styles/globals.css';
+import '@/styles/nprogress.css';
+import NProgress from 'nprogress';
 import Router from "next/router";
-import type { AppProps } from 'next/app'
+import type { AppProps } from 'next/app';
 import React from 'react';
+import Comingsoonpage from './coming-soon';
+
+const isComingSoon = true; // Ganti ke false jika ingin menampilkan halaman utama
 
 function MyApp({ Component, pageProps }: AppProps) {
   React.useEffect(() => {
     NProgress.configure({ showSpinner: false });
-    
+
     const handleRouteStart = () => NProgress.start();
     const handleRouteDone = () => NProgress.done();
 
@@ -17,14 +20,13 @@ function MyApp({ Component, pageProps }: AppProps) {
     Router.events.on("routeChangeError", handleRouteDone);
 
     return () => {
-      // Make sure to remove the event handler on unmount!
       Router.events.off("routeChangeStart", handleRouteStart);
       Router.events.off("routeChangeComplete", handleRouteDone);
       Router.events.off("routeChangeError", handleRouteDone);
     };
   }, []);
 
-  return <Component {...pageProps} />
+  return isComingSoon ? <Comingsoonpage /> : <Component {...pageProps} />;
 }
 
-export default MyApp
+export default MyApp;
