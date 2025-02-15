@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import Image from 'next/image';
 import logo from '~/logo.svg';
@@ -30,15 +30,15 @@ export default function Navbar() {
   }, []);
 
   // Fungsi untuk menangani swipe
-  const handleTouchStart = (e) => {
+  const handleTouchStart = (e: TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
   };
 
-  const handleTouchMove = (e) => {
+  const handleTouchMove = (e: TouchEvent) => {
     touchEndX.current = e.touches[0].clientX;
   };
 
-  const handleTouchEnd = (e) => {
+  const handleTouchEnd = useCallback((e: TouchEvent) => {
     const swipeDistance = touchStartX.current - touchEndX.current;
 
     if (swipeDistance > 50 && touchStartX.current > window.innerWidth - 100) {
@@ -50,7 +50,7 @@ export default function Navbar() {
       setIsOpen(false);
       e.preventDefault();
     }
-  };
+  }, [isOpen]);
 
   useEffect(() => {
     window.addEventListener('touchstart', handleTouchStart);
@@ -62,7 +62,7 @@ export default function Navbar() {
       window.removeEventListener('touchmove', handleTouchMove);
       window.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [isOpen]);
+  }, [isOpen, handleTouchEnd]);
 
   return (
     <>
