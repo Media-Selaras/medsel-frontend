@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import Image from 'next/image';
 import logo from '~/logo.svg';
@@ -10,8 +10,8 @@ export default function Navbar() {
   const [time, setTime] = useState(new Date().toLocaleTimeString());
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  let touchStartX = 0;
-  let touchEndX = 0;
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,20 +29,26 @@ export default function Navbar() {
     return () => clearInterval(interval);
   }, []);
 
-  // Fungsi untuk menangani swipe gesture
-  const handleTouchStart = (e: TouchEvent) => {
-    touchStartX = e.touches[0].clientX;
+  // Fungsi untuk menangani swipe
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
   };
 
-  const handleTouchMove = (e: TouchEvent) => {
-    touchEndX = e.touches[0].clientX;
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.touches[0].clientX;
   };
 
-  const handleTouchEnd = () => {
-    if (touchStartX - touchEndX > 50) {
-      setIsOpen(true); // Swipe kanan ke kiri -> Buka menu
-    } else if (touchEndX - touchStartX > 50) {
-      setIsOpen(false); // Swipe kiri ke kanan -> Tutup menu
+  const handleTouchEnd = (e) => {
+    const swipeDistance = touchStartX.current - touchEndX.current;
+
+    if (swipeDistance > 50 && touchStartX.current > window.innerWidth - 100) {
+      // Swipe kanan ke kiri dari tepi kanan layar -> Buka menu
+      setIsOpen(true);
+      e.preventDefault();
+    } else if (swipeDistance < -50 && isOpen) {
+      // Swipe kiri ke kanan saat menu terbuka -> Tutup menu
+      setIsOpen(false);
+      e.preventDefault();
     }
   };
 
@@ -56,7 +62,7 @@ export default function Navbar() {
       window.removeEventListener('touchmove', handleTouchMove);
       window.removeEventListener('touchend', handleTouchEnd);
     };
-  }, []);
+  }, [isOpen]);
 
   return (
     <>
