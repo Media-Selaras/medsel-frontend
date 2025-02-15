@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import Image from 'next/image';
 import logo from '~/logo.svg';
@@ -10,8 +10,8 @@ export default function Navbar() {
   const [time, setTime] = useState(new Date().toLocaleTimeString());
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const touchStartX = useRef(0);
-  const touchEndX = useRef(0);
+  const touchStartX = useRef<number>(0);
+  const touchEndX = useRef<number>(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,15 +35,15 @@ export default function Navbar() {
   };
 
   // Fungsi untuk menangani swipe
-  const handleTouchStart = (e) => {
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     touchStartX.current = e.touches[0].clientX;
   };
 
-  const handleTouchMove = (e) => {
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
     touchEndX.current = e.touches[0].clientX;
   };
 
-  const handleTouchEnd = (e) => {
+  const handleTouchEnd = useCallback(() => {
     const swipeDistance = touchStartX.current - touchEndX.current;
 
     if (swipeDistance > 50 && touchStartX.current > window.innerWidth - 100) {
@@ -53,19 +53,19 @@ export default function Navbar() {
       // Swipe kiri ke kanan saat menu terbuka -> Tutup menu
       setIsOpen(false);
     }
-  };
+  }, [isOpen]);
 
   useEffect(() => {
-    window.addEventListener('touchstart', handleTouchStart);
-    window.addEventListener('touchmove', handleTouchMove);
-    window.addEventListener('touchend', handleTouchEnd);
+    window.addEventListener('touchstart', handleTouchStart as unknown as EventListener);
+    window.addEventListener('touchmove', handleTouchMove as unknown as EventListener);
+    window.addEventListener('touchend', handleTouchEnd as unknown as EventListener);
 
     return () => {
-      window.removeEventListener('touchstart', handleTouchStart);
-      window.removeEventListener('touchmove', handleTouchMove);
-      window.removeEventListener('touchend', handleTouchEnd);
+      window.removeEventListener('touchstart', handleTouchStart as unknown as EventListener);
+      window.removeEventListener('touchmove', handleTouchMove as unknown as EventListener);
+      window.removeEventListener('touchend', handleTouchEnd as unknown as EventListener);
     };
-  }, [isOpen]);
+  }, [handleTouchEnd]);
 
   return (
     <>
@@ -91,15 +91,11 @@ export default function Navbar() {
             {/* Desktop Menu */}
             <div className="hidden lg:flex flex-1 justify-center">
               <div className="flex space-x-4 items-center">
-                <Link href="/">
-                  <p className="relative text-slate-500 cursor-pointer hover:text-black px-3 py-2 rounded-md text-base after:content-[''] after:block after:h-0.5 after:w-full after:bg-black after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100">
-                    Beranda
-                  </p>
+                <Link href="/" className="relative text-slate-500 cursor-pointer hover:text-black px-3 py-2 rounded-md text-base after:content-[''] after:block after:h-0.5 after:w-full after:bg-black after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100">
+                  Beranda
                 </Link>
-                <Link href="/artikel">
-                  <p className="relative text-slate-500 cursor-pointer hover:text-black px-3 py-2 rounded-md text-base after:content-[''] after:block after:h-0.5 after:w-full after:bg-black after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100">
-                    Artikel
-                  </p>
+                <Link href="/artikel" className="relative text-slate-500 cursor-pointer hover:text-black px-3 py-2 rounded-md text-base after:content-[''] after:block after:h-0.5 after:w-full after:bg-black after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100">
+                  Artikel
                 </Link>
                 <Informasi />
                 <TentangKami />
@@ -120,6 +116,9 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <div
         className={`fixed top-0 right-0 h-full w-64 bg-white shadow-md transform ${isOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 ease-in-out z-40`}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
         <div className="px-4 py-6">
           <Link href="/" className="block px-3 py-2 text-gray-900 hover:bg-gray-200 rounded-md" onClick={() => setIsOpen(false)}>Beranda</Link>
