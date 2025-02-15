@@ -10,8 +10,8 @@ export default function Navbar() {
   const [time, setTime] = useState(new Date().toLocaleTimeString());
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const touchStartX = useRef<number>(0);
-  const touchEndX = useRef<number>(0);
+  const touchStartY = useRef<number>(0);
+  const touchEndY = useRef<number>(0);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -26,28 +26,31 @@ export default function Navbar() {
 
   const toggleMenu = () => setIsOpen((prev) => !prev);
 
-  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    touchStartX.current = e.touches[0].clientX;
+  const handleTouchStart = (e: TouchEvent) => {
+    touchStartY.current = e.touches[0].clientY;
   };
   
-  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    touchEndX.current = e.touches[0].clientX;
+  const handleTouchMove = (e: TouchEvent) => {
+    touchEndY.current = e.touches[0].clientY;
   };
 
   const handleTouchEnd = useCallback(() => {
-    const swipeDistance = touchStartX.current - touchEndX.current;
-    if (swipeDistance > 50 && touchStartX.current > window.innerWidth - 100) setIsOpen(true);
-    else if (swipeDistance < -50 && isOpen) setIsOpen(false);
+    const swipeDistance = touchStartY.current - touchEndY.current;
+    if (swipeDistance > 50) {
+      setTimeout(() => setIsOpen(true), 50);
+    } else if (swipeDistance < -50 && isOpen) {
+      setTimeout(() => setIsOpen(false), 50);
+    }
   }, [isOpen]);
 
   useEffect(() => {
-    window.addEventListener('touchstart', handleTouchStart as unknown as EventListener);
-    window.addEventListener('touchmove', handleTouchMove as unknown as EventListener);
-    window.addEventListener('touchend', handleTouchEnd as unknown as EventListener);
+    window.addEventListener('touchstart', handleTouchStart);
+    window.addEventListener('touchmove', handleTouchMove);
+    window.addEventListener('touchend', handleTouchEnd);
     return () => {
-      window.removeEventListener('touchstart', handleTouchStart as unknown as EventListener);
-      window.removeEventListener('touchmove', handleTouchMove as unknown as EventListener);
-      window.removeEventListener('touchend', handleTouchEnd as unknown as EventListener);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('touchend', handleTouchEnd);
     };
   }, [handleTouchEnd]);
 
@@ -81,7 +84,7 @@ export default function Navbar() {
       
       {/* Mobile Menu */}
       <div
-        className={`fixed top-0 right-0 h-full w-56 bg-white shadow-md transform ${isOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 ease-in-out z-40`}
+        className={`fixed bottom-0 left-0 w-full bg-white shadow-md transform ${isOpen ? 'translate-y-0' : 'translate-y-full'} transition-transform duration-300 ease-in-out z-40`}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
