@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { BsSpotify } from "react-icons/bs";
+import { BsSpotify } from "react-icons/bs";z
 import Layout from "@/components/Layout/Layout";
 import Footer from "@/components/NavbarFooter/Footer";
 import Navbar from "@/components/NavbarFooter/Navbar";
 import NextImage from "@/components/NextImage";
 import { Animation } from "@/components/Animation";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay } from "swiper";
+import "swiper/css/pagination";
+import { useForm } from "react-hook-form";
 import { komunitas } from "@/lib/data/homepage";
 import axios from "axios";
-import { useForm } from "react-hook-form";
 import { Date } from "@/lib/date";
-import CommunityCard from "@/components/CommunityCard"; // Import CommunityCard
 
 type Inputs = {
   nama: string;
@@ -26,27 +28,43 @@ export default function Landingpage() {
   const { register, handleSubmit, getValues } = useForm<Inputs>();
 
   const onSubmit = (data: any) => {
-    const url = `mailto:Techmediaselaras@gmail.com?subject=${getValues("subjek")}&body=${getValues("pesan")}`;
+    const url = `mailto:Techmediaselaras@gmail.com?subject=${getValues(
+      "subjek"
+    )}&body=${getValues("pesan")}`;
     window.open(url, "_blank");
   };
 
   const getBlog = async () => {
-    const _res = await axios.get("https://api.medselaras.com/api/blog").then((res) => res.data.data.data);
-    const covers = _res.map((artikel: { day: any; cover: any; slug: any; date: any; title: any; description: any; }) => {
-      return {
-        image: artikel.cover,
-        link: "/blog/" + artikel.slug,
-        title: artikel.title,
-        date: Date(artikel.date),
-        description: artikel.description,
-        day: artikel.day
-      };
-    });
+    const _res = await axios
+      .get("https://api.medselaras.com/api/blog")
+      .then((res) => res.data.data.data);
+    const covers = _res.map(
+      (artikel: {
+        day: any;
+        cover: any;
+        slug: any;
+        date: any;
+        title: any;
+        description: any;
+      }) => {
+        return {
+          image: artikel.cover,
+          link: "/blog/" + artikel.slug,
+          title: artikel.title,
+          date: Date(artikel.date),
+          description: artikel.description,
+          day : artikel.day
+        };
+      }
+    );
+    console.log(covers);
     setBlogs(covers);
   };
 
   const getInstagram = async () => {
-    const _res = await axios.get("https://api.medselaras.com/api/instagram").then((res) => res.data.data.data);
+    const _res = await axios
+      .get("https://api.medselaras.com/api/instagram")
+      .then((res) => res.data.data.data);
     const covers = _res.map((ig: { imageUrl: any; url: any }) => {
       return {
         image: ig.imageUrl,
@@ -57,7 +75,9 @@ export default function Landingpage() {
   };
 
   const getSpotify = async () => {
-    const _res = await axios.get("https://api.medselaras.com/api/spotify").then((res) => res.data.data.data);
+    const _res = await axios
+      .get("https://api.medselaras.com/api/spotify")
+      .then((res) => res.data.data.data);
     setSpotifies(_res);
   };
 
@@ -73,12 +93,12 @@ export default function Landingpage() {
         <Navbar />
         <div className="w-full min-h-screen bg-white overflow-hidden">
           <section className="Landing Page">
-            <Animation className="flex sm:flex-row flex-col m-auto lg:max-w-7xl lg:gap-14 p-7 lg:p-7">
+            <Animation className="flex sm:flex-row flex-col m-auto  lg:max-w-7xl lg:gap-14 p-7 lg:p-7">
               <div className="self-center ">
                 <h1 className="font-bold lg:text-5xl text-3xl lg:leading-snug">
                   Wadah pengedukasian konten kreatif terkait isu-isu sosial
                 </h1>
-                <p className="py-4 lg:text-2xl text-base">
+                <p className="py-4 lg:text-2xl  text-base">
                   Komunitas yang memberikan edukasi mengenai pendidikan,
                   ekonomi, environment, kesehatan serta pemberdayaan masyarakat
                 </p>
@@ -89,7 +109,7 @@ export default function Landingpage() {
                 </Link>
               </div>
               <div className="flex lg:w-1/2 w-full mx-auto justify-center">
-                <div className="w-[400px] self-center sm:w-[300px] md:w-[400px] lg:w-[620px]">
+                <div className="w-[400px] self-center  sm:w-[300px] md:w-[400px] lg:w-[620px]">
                   <NextImage
                     src="/img/landingpage/landingpage.png"
                     height="100%"
@@ -102,15 +122,20 @@ export default function Landingpage() {
               </div>
             </Animation>
           </section>
-
           <section className="Komunitas">
             <Animation className="lg:py-16 flex max-w-7xl flex-col m-auto lg:px-14 p-7">
               <h1 className="sm:text-center md:text-3xl text-xl w-3/4 sm:w-full pb-10 font-bold lg:pb-6">
                 Komunitas yang telah berkolaborasi dengan Media Selaras
               </h1>
-              <div className="grid sm:grid-cols-7 grid-cols-2 gap-6 text-center">
-                {komunitas.map(({ src, name }, index) => (
-                  <CommunityCard key={index} logoSrc={src} communityName={name} />
+              <div className="grid sm:grid-cols-7   grid-cols-2 gap-6 text-center ">
+                {komunitas.map(({ src }, index) => (
+                  <NextImage
+                    key={index}
+                    height="50%"
+                    width="100%"
+                    src={src}
+                    alt="landingpage"
+                  />
                 ))}
               </div>
               <h3 className="text-center sm:text-base text-lg py-8 text-gray-400">
@@ -118,15 +143,6 @@ export default function Landingpage() {
               </h3>
             </Animation>
           </section>
-
-          {/* ... (Bagian lain dari Landingpage tetap sama) ... */}
-
-          <Footer />
-        </div>
-      </main>
-    </Layout>
-  );
-}
           <section className="Tentang Medsel">
             <Animation className="relative w-full">
               <div className="flex flex-row items-start m-auto max-w-7xl">
