@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { BsSpotify } from "react-icons/bs";
 import Layout from "@/components/Layout/Layout";
 import Footer from "@/components/NavbarFooter/Footer";
@@ -123,26 +124,49 @@ export default function Landingpage() {
             </Animation>
           </section>
           <section className="Komunitas">
-            <Animation className="lg:py-16 flex max-w-7xl flex-col m-auto lg:px-14 p-7">
-              <h1 className="sm:text-center md:text-3xl text-xl w-3/4 sm:w-full pb-10 font-bold lg:pb-6">
-                Komunitas yang telah berkolaborasi dengan Media Selaras
-              </h1>
-              <div className="grid sm:grid-cols-7   grid-cols-2 gap-6 text-center ">
-                {komunitas.map(({ src }, index) => (
+      <div className="lg:py-16 flex max-w-7xl flex-col m-auto lg:px-14 p-7">
+        <h1 className="sm:text-center md:text-3xl text-xl w-3/4 sm:w-full pb-10 font-bold lg:pb-6">
+          Komunitas yang telah berkolaborasi dengan Media Selaras
+        </h1>
+        <div className="grid sm:grid-cols-7 grid-cols-2 gap-6 text-center">
+          {komunitas.map(({ src, name }, index) => (
+            <div key={index} className="relative w-full h-[100px] perspective-1000">
+              <motion.div
+                className="relative w-full h-full"
+                whileHover={{ rotateY: 180 }}
+                transition={{ duration: 0.5 }}
+              >
+                {/* Front (Logo) */}
+                <motion.div
+                  className="absolute w-full h-full backface-hidden"
+                  initial={{ rotateY: 0 }}
+                  animate={{ rotateY: 0 }}
+                >
                   <NextImage
-                    key={index}
-                    height="50%"
-                    width="100%"
                     src={src}
-                    alt="landingpage"
+                    alt={name}
+                    layout="fill"
+                    objectFit="contain"
                   />
-                ))}
-              </div>
-              <h3 className="text-center sm:text-base text-lg py-8 text-gray-400">
-                dan 50+ lainnya
-              </h3>
-            </Animation>
-          </section>
+                </motion.div>
+
+                {/* Back (Nama Komunitas) */}
+                <motion.div
+                  className="absolute w-full h-full flex items-center justify-center bg-gray-800 text-white text-lg font-bold backface-hidden"
+                  initial={{ rotateY: -180 }}
+                  animate={{ rotateY: -180 }}
+                >
+                  {name}
+                </motion.div>
+              </motion.div>
+            </div>
+          ))}
+        </div>
+        <h3 className="text-center sm:text-base text-lg py-8 text-gray-400">
+          dan 50+ lainnya
+        </h3>
+      </div>
+    </section>
           <section className="Tentang Medsel">
             <Animation className="relative w-full">
               <div className="flex flex-row items-start m-auto max-w-7xl">
