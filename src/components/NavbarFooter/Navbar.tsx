@@ -56,9 +56,9 @@ export default function Navbar() {
 
                 {/* Desktop Menu */}
                 <div className="hidden lg:flex flex-1 justify-center">
-                  <div className="flex space-x-6 items-center">
+                  <div className="flex space-x-10 items-center">
                     <Link href="/">
-                      <p className="relative text-slate-500 cursor-pointer hover:text-black px-5 py-2 rounded-md text-base after:content-[''] after:block after:h-0.5 after:w-full after:bg-black after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100">
+                      <p className="relative text-slate-500 cursor-pointer hover:text-black px-6 py-2 rounded-md text-base after:content-[''] after:block after:h-0.5 after:w-full after:bg-black after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100">
                         Beranda
                       </p>
                     </Link>
@@ -79,8 +79,8 @@ export default function Navbar() {
 
             {/* Mobile Menu */}
             <Disclosure.Panel className="lg:hidden absolute top-16 left-0 w-full bg-white shadow-md">
-              <div className="px-4 pt-2 pb-3 space-y-2">
-                <Link href="/" className="block px-5 py-2 text-gray-900 hover:bg-gray-200 rounded-md">Beranda</Link>
+              <div className="px-4 pt-2 pb-3 space-y-4">
+                <Link href="/" className="block px-6 py-3 text-gray-900 hover:bg-gray-200 rounded-md">Beranda</Link>
                 <Informasi />
                 <TentangKami />
               </div>
