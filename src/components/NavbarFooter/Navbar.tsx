@@ -7,7 +7,7 @@ import TentangKami from './TentangKamiDropdown';
 import Informasi from './InformasiDropdown';
 import Link from 'next/link';
 
-function classNames(...classes: string[]) {
+function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
@@ -56,10 +56,10 @@ export default function Navbar() {
                   <div className="hidden lg:block sm:ml-6">
                     <div className="flex space-x-4 items-center">
                       <Link href="/">
-                        <p className='text-slate-500 cursor-pointer hover:text-black px-3 py-2 rounded-md text-base'>Beranda</p>
+                        <p className='text-slate-500 cursor-pointer hover:text-black px-3 py-2 rounded-md text-base hover:underline'>Beranda</p>
                       </Link>
                       <Link href="/artikel">
-                        <p className='text-slate-500 cursor-pointer hover:text-black px-3 py-2 rounded-md text-base'>Artikel</p>
+                        <p className='text-slate-500 cursor-pointer hover:text-black px-3 py-2 rounded-md text-base hover:underline'>Artikel</p>
                       </Link>
                       <Informasi />
                       <TentangKami />
