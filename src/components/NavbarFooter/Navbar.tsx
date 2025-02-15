@@ -62,11 +62,11 @@ export default function Navbar() {
                         Beranda
                       </p>
                     </Link>
-                    <Link href="/artikel">
+                    {/* <Link href="/artikel">
                       <p className="relative text-slate-500 cursor-pointer hover:text-black px-3 py-2 rounded-md text-base after:content-[''] after:block after:h-0.5 after:w-full after:bg-black after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100">
                         Artikel
                       </p>
-                    </Link>
+                    </Link> */}
                     <Informasi />
                     <TentangKami />
                   </div>
@@ -86,7 +86,7 @@ export default function Navbar() {
             <Disclosure.Panel className="lg:hidden absolute top-16 left-0 w-full bg-white shadow-md">
               <div className="px-2 pt-2 pb-3 space-y-1">
                 <Link href="/" className="block px-3 py-2 text-gray-900 hover:bg-gray-200 rounded-md">Beranda</Link>
-                <Link href="/artikel" className="block px-3 py-2 text-gray-900 hover:bg-gray-200 rounded-md">Artikel</Link>
+                {/* <Link href="/artikel" className="block px-3 py-2 text-gray-900 hover:bg-gray-200 rounded-md">Artikel</Link> */}
                 <Informasi />
                 <TentangKami />
               </div>
