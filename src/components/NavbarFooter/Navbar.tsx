@@ -7,7 +7,7 @@ import TentangKami from './TentangKamiDropdown';
 import Informasi from './InformasiDropdown';
 import Link from 'next/link';
 
-function classNames(...classes) {
+function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
 
