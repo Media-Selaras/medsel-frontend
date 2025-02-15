@@ -7,7 +7,7 @@ import TentangKami from './TentangKamiDropdown';
 import Informasi from './InformasiDropdown';
 import Link from 'next/link';
 
-function classNames(...classes: string[]) {
+function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
@@ -45,25 +45,23 @@ export default function Navbar() {
                   <Image src={logo} alt="Logo" />
                 </div>
               </div>
-              <div>
-                <div className="absolute inset-y-0 w-full left-0 p-6 flex justify-end items-center lg:hidden">
-                  <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-900 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:bg-gray-500 hover:bg-gray-500">
-                    <span className="sr-only">Open main menu</span>
-                    <GiHamburgerMenu className="block h-6 w-6" aria-hidden="true" />
-                  </Disclosure.Button>
-                </div>
-                <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify">
-                  <div className="hidden lg:block sm:ml-6">
-                    <div className="flex space-x-4 items-center">
-                      <Link href="/">
-                        <p className='relative text-slate-500 cursor-pointer hover:text-black px-3 py-2 rounded-md text-base after:content-[" "] after:block after:h-0.5 after:w-full after:bg-black after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100'>Beranda</p>
-                      </Link>
-                      <Link href="/artikel">
-                        <p className='relative text-slate-500 cursor-pointer hover:text-black px-3 py-2 rounded-md text-base after:content-[" "] after:block after:h-0.5 after:w-full after:bg-black after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100'>Artikel</p>
-                      </Link>
-                      <Informasi />
-                      <TentangKami />
-                    </div>
+              <div className='flex-1 flex justify-end lg:hidden'>
+                <Disclosure.Button className="fixed top-4 right-4 z-50 inline-flex items-center justify-center rounded-md p-2 text-gray-900 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:bg-gray-500 hover:bg-gray-500">
+                  <span className="sr-only">Open main menu</span>
+                  <GiHamburgerMenu className="block h-6 w-6" aria-hidden="true" />
+                </Disclosure.Button>
+              </div>
+              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify">
+                <div className="hidden lg:block sm:ml-6">
+                  <div className="flex space-x-4 items-center">
+                    <Link href="/">
+                      <p className='relative text-slate-500 cursor-pointer hover:text-black px-3 py-2 rounded-md text-base after:content-[" "] after:block after:h-0.5 after:w-full after:bg-black after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100'>Beranda</p>
+                    </Link>
+                    <Link href="/artikel">
+                      <p className='relative text-slate-500 cursor-pointer hover:text-black px-3 py-2 rounded-md text-base after:content-[" "] after:block after:h-0.5 after:w-full after:bg-black after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100'>Artikel</p>
+                    </Link>
+                    <Informasi />
+                    <TentangKami />
                   </div>
                 </div>
               </div>
