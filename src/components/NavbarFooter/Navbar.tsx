@@ -56,10 +56,10 @@ export default function Navbar() {
                   <div className="hidden lg:block sm:ml-6">
                     <div className="flex space-x-4 items-center">
                       <Link href="/">
-                        <p className='text-slate-500 cursor-pointer hover:text-black px-3 py-2 rounded-md text-base hover:underline'>Beranda</p>
+                        <p className='relative text-slate-500 cursor-pointer hover:text-black px-3 py-2 rounded-md text-base after:content-[" "] after:block after:h-0.5 after:w-full after:bg-black after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100'>Beranda</p>
                       </Link>
                       <Link href="/artikel">
-                        <p className='text-slate-500 cursor-pointer hover:text-black px-3 py-2 rounded-md text-base hover:underline'>Artikel</p>
+                        <p className='relative text-slate-500 cursor-pointer hover:text-black px-3 py-2 rounded-md text-base after:content-[" "] after:block after:h-0.5 after:w-full after:bg-black after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100'>Artikel</p>
                       </Link>
                       <Informasi />
                       <TentangKami />
