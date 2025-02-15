@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { BsSpotify } from "react-icons/bs";z
+import { BsSpotify } from "react-icons/bs";
 import Layout from "@/components/Layout/Layout";
 import Footer from "@/components/NavbarFooter/Footer";
 import Navbar from "@/components/NavbarFooter/Navbar";
