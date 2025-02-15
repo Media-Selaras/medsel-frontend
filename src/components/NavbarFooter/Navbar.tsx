@@ -78,9 +78,9 @@ export default function Navbar() {
                   <div className='flex items-center bg-gray-200 py-3 px-6 rounded-3xl font-semibold text-gray-700 text-sm mx-auto cursor-pointer w-fit h-fit mt-4'>
                     <FaGlobe className='mr-2' /> ID / ENG
                   </div>
-                  <Link href="/login">
+                  {/* <Link href="/login">
                     <div className='bg-[#E77E49] mt-4 py-3 px-8 rounded-3xl font-semibold text-white text-sm mx-auto cursor-pointer w-fit h-fit'>Masuk</div>
-                  </Link>
+                  </Link> */}
                 </div>
             </div>
           </Disclosure.Panel>
