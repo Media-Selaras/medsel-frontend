@@ -1,6 +1,6 @@
-import { Fragment, useEffect, useState } from 'react'
-import { Disclosure } from '@headlessui/react'
-import { GiHamburgerMenu } from 'react-icons/gi'
+import { Fragment, useEffect, useState } from 'react';
+import { Disclosure } from '@headlessui/react';
+import { GiHamburgerMenu } from 'react-icons/gi';
 import Image from 'next/image';
 import logo from '~/logo.svg';
 import TentangKami from './TentangKamiDropdown';
@@ -13,6 +13,16 @@ function classNames(...classes: string[]) {
 
 export default function Navbar() {
   const [time, setTime] = useState(new Date().toLocaleTimeString());
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -22,14 +32,17 @@ export default function Navbar() {
   }, []);
 
   return (
-    <Disclosure as="nav" className="bg-white relative">
+    <Disclosure as="nav" className={classNames(
+      'fixed top-0 w-full z-50 transition-all duration-300',
+      isScrolled ? 'bg-white/80 backdrop-blur-md shadow-md' : 'bg-white'
+    )}>
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 lg:py-1">
             <div className="w-full relative flex h-16 items-center justify-between">
               <div className='w-[20%]'>
                 <div className='w-16'>
-                  <Image src={logo} alt ="Logo" />
+                  <Image src={logo} alt="Logo" />
                 </div>
               </div>
               <div>
