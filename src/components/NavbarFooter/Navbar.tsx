@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useState } from 'react';
 import { Disclosure } from '@headlessui/react';
-import { GiHamburgerMenu } from 'react-icons/gi';
+import { GiHamburgerMenu, GiHole, GiNewspaper, GiInfo } from 'react-icons/gi';
 import Image from 'next/image';
 import logo from '~/logo.svg';
 import TentangKami from './TentangKamiDropdown';
@@ -32,24 +32,18 @@ export default function Navbar() {
   }, []);
 
   return (
-    <Disclosure as="nav" className={classNames(
-      'fixed top-0 w-full z-50 transition-all duration-300',
-      isScrolled ? 'bg-white/80 backdrop-blur-md shadow-md' : 'bg-white'
-    )}>
-      {({ open }) => (
-        <>
+    <>
+      <Disclosure as="nav" className={classNames(
+        'fixed top-0 w-full z-50 transition-all duration-300',
+        isScrolled ? 'bg-white/80 backdrop-blur-md shadow-md' : 'bg-white'
+      )}>
+        {({ open }) => (
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 lg:py-1">
             <div className="w-full relative flex h-16 items-center justify-between">
               <div className='w-[20%]'>
                 <div className='w-16'>
                   <Image src={logo} alt="Logo" />
                 </div>
-              </div>
-              <div className='flex-1 flex justify-end lg:hidden'>
-                <Disclosure.Button className="fixed top-4 right-4 z-50 inline-flex items-center justify-center rounded-md p-2 text-gray-900 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:bg-gray-500 hover:bg-gray-500">
-                  <span className="sr-only">Open main menu</span>
-                  <GiHamburgerMenu className="block h-6 w-6" aria-hidden="true" />
-                </Disclosure.Button>
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify">
                 <div className="hidden lg:block sm:ml-6">
@@ -73,8 +67,30 @@ export default function Navbar() {
               </div>
             </div>
           </div>
-        </>
-      )}
-    </Disclosure>
+        )}
+      </Disclosure>
+      <div className="fixed bottom-0 left-0 w-full bg-white shadow-lg py-3 flex justify-around items-center lg:hidden">
+        <Link href="/">
+          <div className="flex flex-col items-center text-gray-700 hover:text-black">
+            <GiHole className="text-2xl" />
+            <span className="text-xs">Beranda</span>
+          </div>
+        </Link>
+        <Link href="/artikel">
+          <div className="flex flex-col items-center text-gray-700 hover:text-black">
+            <GiNewspaper className="text-2xl" />
+            <span className="text-xs">Artikel</span>
+          </div>
+        </Link>
+        <Disclosure.Button>
+          <div className="flex flex-col items-center text-gray-700 hover:text-black">
+            <GiHamburgerMenu className="text-2xl" />
+            <span className="text-xs">Menu</span>
+          </div>
+        </Disclosure.Button>
+        <Informasi />
+        <TentangKami />
+      </div>
+    </>
   );
 }
