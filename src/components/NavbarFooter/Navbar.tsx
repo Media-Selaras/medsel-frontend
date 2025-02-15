@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useState } from 'react';
 import { Disclosure } from '@headlessui/react';
 import { GiHamburgerMenu } from 'react-icons/gi';
+import { IoClose } from 'react-icons/io5';
 import Image from 'next/image';
 import logo from '~/logo.svg';
 import TentangKami from './TentangKamiDropdown';
@@ -50,7 +51,7 @@ export default function Navbar() {
                 <div className="lg:hidden">
                   <Disclosure.Button className="absolute top-4 right-4 z-50 inline-flex items-center justify-center rounded-md p-2 text-gray-900 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:bg-gray-500 hover:bg-gray-500">
                     <span className="sr-only">Open main menu</span>
-                    <GiHamburgerMenu className="h-6 w-6" aria-hidden="true" />
+                    {open ? <IoClose className="h-6 w-6" aria-hidden="true" /> : <GiHamburgerMenu className="h-6 w-6" aria-hidden="true" />}
                   </Disclosure.Button>
                 </div>
 
