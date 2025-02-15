@@ -19,7 +19,7 @@ export default function Navbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-
+    
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -56,7 +56,7 @@ export default function Navbar() {
 
                 {/* Desktop Menu */}
                 <div className="hidden lg:flex flex-1 justify-center">
-                  <div className="flex space-x-6 items-center">
+                  <div className="flex space-x-4 items-center">
                     <Link href="/">
                       <p className="relative text-slate-500 cursor-pointer hover:text-black px-3 py-2 rounded-md text-base after:content-[''] after:block after:h-0.5 after:w-full after:bg-black after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100">
                         Beranda
@@ -69,7 +69,9 @@ export default function Navbar() {
 
                 {/* Waktu dan Donasi */}
                 <div className="hidden lg:flex lg:justify-end w-[30%] items-center">
-                  <div className="bg-[#FAE5DB] py-3 px-8 rounded-3xl font-semibold text-[#E77E49] text-sm mr-4 cursor-pointer">Donasi</div>
+                  <div className="bg-[#FAE5DB] py-3 px-8 rounded-3xl font-semibold text-[#E77E49] text-sm mr-4 cursor-pointer">
+                    Donasi
+                  </div>
                   <div className="flex items-center bg-gray-200 py-3 px-6 rounded-3xl font-semibold text-gray-700 text-sm cursor-pointer">
                     {time}
                   </div>
@@ -83,11 +85,13 @@ export default function Navbar() {
                 <Link href="/" className="block px-4 py-3 mx-2 text-gray-900 hover:bg-gray-200 rounded-md">
                   Beranda
                 </Link>
-                <div className="mx-2">
-                  <Informasi />
+
+                {/* Perbaiki posisi submenu di mobile */}
+                <div className="mx-2 pl-4"> {/* Tambah padding kiri */}
+                  <Informasi className="text-right" /> {/* Geser isi submenu ke kanan */}
                 </div>
-                <div className="mx-2">
-                  <TentangKami />
+                <div className="mx-2 pl-4"> {/* Tambah padding kiri */}
+                  <TentangKami className="text-right" /> {/* Geser isi submenu ke kanan */}
                 </div>
               </div>
             </Disclosure.Panel>
