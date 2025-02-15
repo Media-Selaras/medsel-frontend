@@ -7,7 +7,7 @@ import TentangKami from './TentangKamiDropdown';
 import Informasi from './InformasiDropdown';
 import Link from 'next/link';
 
-function classNames(...classes: string[]) {
+function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
@@ -62,6 +62,11 @@ export default function Navbar() {
                         Beranda
                       </p>
                     </Link>
+                    <Link href="/artikel">
+                      <p className="relative text-slate-500 cursor-pointer hover:text-black px-3 py-2 rounded-md text-base after:content-[''] after:block after:h-0.5 after:w-full after:bg-black after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100">
+                        Artikel
+                      </p>
+                    </Link>
                     <Informasi />
                     <TentangKami />
                   </div>
@@ -69,9 +74,7 @@ export default function Navbar() {
 
                 {/* Waktu dan Donasi */}
                 <div className="hidden lg:flex lg:justify-end w-[30%] items-center">
-                  <div className="bg-[#FAE5DB] py-3 px-8 rounded-3xl font-semibold text-[#E77E49] text-sm mr-4 cursor-pointer">
-                    Donasi
-                  </div>
+                  <div className="bg-[#FAE5DB] py-3 px-8 rounded-3xl font-semibold text-[#E77E49] text-sm mr-4 cursor-pointer">Donasi</div>
                   <div className="flex items-center bg-gray-200 py-3 px-6 rounded-3xl font-semibold text-gray-700 text-sm cursor-pointer">
                     {time}
                   </div>
@@ -81,18 +84,11 @@ export default function Navbar() {
 
             {/* Mobile Menu */}
             <Disclosure.Panel className="lg:hidden absolute top-16 left-0 w-full bg-white shadow-md">
-              <div className="px-4 pt-4 pb-4 space-y-3"> {/* Tambah padding & jarak antar menu */}
-                <Link href="/" className="block px-4 py-3 mx-2 text-gray-900 hover:bg-gray-200 rounded-md">
-                  Beranda
-                </Link>
-
-                {/* Perbaiki posisi submenu di mobile */}
-                <div className="mx-2 pl-4"> {/* Tambah padding kiri */}
-                  <Informasi className="text-right" /> {/* Geser isi submenu ke kanan */}
-                </div>
-                <div className="mx-2 pl-4"> {/* Tambah padding kiri */}
-                  <TentangKami className="text-right" /> {/* Geser isi submenu ke kanan */}
-                </div>
+              <div className="px-2 pt-2 pb-3 space-y-1">
+                <Link href="/" className="block px-3 py-2 text-gray-900 hover:bg-gray-200 rounded-md">Beranda</Link>
+                <Link href="/artikel" className="block px-3 py-2 text-gray-900 hover:bg-gray-200 rounded-md">Artikel</Link>
+                <Informasi />
+                <TentangKami />
               </div>
             </Disclosure.Panel>
           </>
