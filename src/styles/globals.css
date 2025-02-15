@@ -58,6 +58,17 @@
   }
 }
 
+.perspective {
+  perspective: 1000px;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
 
 .marquee-content{
   animation: mymove 7s linear infinite;
