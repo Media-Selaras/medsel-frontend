@@ -28,8 +28,7 @@ export default function ComingSoonPage() {
 
   return (
     <div 
-      className="w-full h-screen flex flex-col items-center justify-center text-white relative bg-cover bg-center" 
-      style={{ backgroundImage: "url('/public/img/blog/Ilustrasi.jpg')" }}
+      className="w-full h-screen flex flex-col items-center justify-center text-white relative bg-black"
     >
       <div className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-md"></div>
       <Head>
