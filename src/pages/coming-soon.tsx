@@ -23,7 +23,7 @@ export default function ComingSoonPage() {
 
       {/* Progress Bar */}
       <div className="flex flex-col items-center mt-10">
-        <span className="text-white">62%</span>
+        <span className="text-white">15%</span>
         <div className="w-full max-w-md bg-gray-700 rounded-full h-2.5 relative mt-2">
           <div className="bg-gradient-to-r from-blue-500 to-pink-500 h-full rounded-full" style={{ width: "62%" }} />
         </div>
