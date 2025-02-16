@@ -39,39 +39,46 @@ export default function ComingSoonPage() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      {/* Background Stars */}
-      <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/path/to/your/stars-bg.jpg')" }} />
-
       {/* Logo */}
-      <Image src={medsel} width={150} height={150} alt="Media Selaras Logo" className="animate-fadeIn" />
+      <Image src={medsel} width={150} height={150} alt="Media Selaras Logo" className="animate-fadeIn mb-6" />
       
       {/* Coming Soon Text */}
-      <h1 className="text-5xl md:text-8xl font-bold text-white mt-6 animate-bounce">COMING SOON</h1>
-      <p className="text-lg text-gray-300 mt-2">Kami sedang mempersiapkan sesuatu yang luar biasa untuk Anda.</p>
+      <h1 className="text-6xl font-bold text-white animate-bounce">COMING SOON</h1>
+      <p className="text-lg text-gray-300 mt-2">Website kami sedang dalam pembangunan. Bersiaplah untuk konten luar biasa!</p>
 
       {/* Countdown Timer */}
       <div className="flex flex-col items-center mt-10 text-white">
-        <span className="text-2xl">{timeLeft.days} Days</span>
-        <span className="text-2xl">{timeLeft.hours} Hours</span>
-        <span className="text-2xl">{timeLeft.minutes} Minutes</span>
-        <span className="text-2xl">{timeLeft.seconds} Seconds</span>
+        <span className="text-4xl font-bold">{timeLeft.days} <span className="text-sm">Days</span></span>
+        <span className="text-4xl font-bold">{timeLeft.hours} <span className="text-sm">Hours</span></span>
+        <span className="text-4xl font-bold">{timeLeft.minutes} <span className="text-sm">Minutes</span></span>
+        <span className="text-4xl font-bold">{timeLeft.seconds} <span className="text-sm">Seconds</span></span>
+      </div>
+
+      {/* Subscribe Section */}
+      <div className="flex flex-col items-center mt-10">
+        <input
+          type="email"
+          placeholder="Subscribe to our newsletter"
+          className="p-2 rounded-md text-black"
+        />
+        <button className="mt-2 bg-green-500 text-white p-2 rounded-md">Subscribe</button>
       </div>
 
       <style jsx>{`
-        @keyframes marquee {
-          from { transform: translateX(100%); }
-          to { transform: translateX(-100%); }
-        }
-        .animate-marquee {
-          display: inline-block;
-          animation: marquee 10s linear infinite;
-        }
         @keyframes fadeIn {
           from { opacity: 0; }
           to { opacity: 1; }
         }
         .animate-fadeIn {
           animation: fadeIn 2s ease-in-out;
+        }
+        @keyframes bounce {
+          0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+          40% { transform: translateY(-30px); }
+          60% { transform: translateY(-15px); }
+        }
+        .animate-bounce {
+          animation: bounce 2s infinite;
         }
       `}</style>
     </div>
