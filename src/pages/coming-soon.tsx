@@ -28,13 +28,6 @@ export default function ComingSoonPage() {
           <div className="bg-gradient-to-r from-blue-500 to-pink-500 h-full rounded-full" style={{ width: "62%" }} />
         </div>
       </div>
-      
-      {/* Marquee Effect */}
-      <div className="absolute bottom-10 w-full overflow-hidden whitespace-nowrap">
-        <div className="inline-block text-lg text-white font-bold animate-marquee">
-          COMING SOON &bull; COMING SOON &bull; COMING SOON &bull; COMING SOON &bull; COMING SOON
-        </div>
-      </div>
 
       <style jsx>{`
         @keyframes marquee {
