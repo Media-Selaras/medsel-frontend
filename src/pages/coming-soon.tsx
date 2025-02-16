@@ -27,15 +27,19 @@ export default function ComingSoonPage() {
   }, []);
 
   return (
-    <div className="w-full h-screen flex flex-col items-center justify-center bg-black text-white relative">
+    <div 
+      className="w-full h-screen flex flex-col items-center justify-center text-white relative bg-cover bg-center" 
+      style={{ backgroundImage: "url('public/img/blog/Ilustrasi.jpg')" }}
+    >
+      <div className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-md"></div>
       <Head>
         <title>Coming Soon</title>
       </Head>
-      <div className="text-center">
+      <div className="text-center relative z-10">
         <h1 className="text-8xl font-bold">{timeLeft.days}</h1>
         <p className="text-2xl">Days</p>
       </div>
-      <div className="flex gap-6 mt-4 text-center">
+      <div className="flex gap-6 mt-4 text-center relative z-10">
         <div>
           <h2 className="text-4xl font-bold">{timeLeft.hours}</h2>
           <p>Hrs</p>
@@ -49,9 +53,9 @@ export default function ComingSoonPage() {
           <p>Sec</p>
         </div>
       </div>
-      <h2 className="text-5xl font-bold mt-10">COMING SOON</h2>
-      <p className="text-lg mt-2">Our website is under construction. Stay tuned!</p>
-      <div className="mt-6 flex items-center">
+      <h2 className="text-5xl font-bold mt-10 relative z-10">COMING SOON</h2>
+      <p className="text-lg mt-2 relative z-10">Our website is under construction. Stay tuned!</p>
+      <div className="mt-6 flex items-center relative z-10">
         <input type="email" placeholder="Subscribe Newsletter" className="p-2 rounded-md text-black" />
         <button className="ml-2 bg-green-500 p-2 rounded-md">✔</button>
       </div>
