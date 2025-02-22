@@ -33,7 +33,7 @@ export default function ComingSoonPage() {
       </Head>
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat backdrop-blur-md" 
-        style={{ backgroundImage: "url('/image.png')", filter: 'blur(8px)' }}
+        style={{ backgroundImage: "url('/img/image.png')", filter: 'blur(8px)' }}
       ></div>
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
       <div className="text-center relative z-10">
