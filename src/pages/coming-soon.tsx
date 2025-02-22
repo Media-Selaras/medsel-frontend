@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Head from 'next/head';
 
 export default function ComingSoonPage() {
-  const targetDate = new Date('2025-02-23T00:00:00').getTime();
+  const targetDate = new Date('2025-02-24T00:00:00').getTime();
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
@@ -27,13 +27,15 @@ export default function ComingSoonPage() {
   }, []);
 
   return (
-    <div 
-      className="w-full h-screen flex flex-col items-center justify-center text-white relative bg-black"
-    >
-      <div className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-md"></div>
+    <div className="w-full h-screen flex flex-col items-center justify-center text-white relative">
       <Head>
         <title>Coming Soon</title>
       </Head>
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat backdrop-blur-md" 
+        style={{ backgroundImage: "url('/image.png')", filter: 'blur(8px)' }}
+      ></div>
+      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
       <div className="text-center relative z-10">
         <h1 className="text-8xl font-bold">{timeLeft.days}</h1>
         <p className="text-2xl">Days</p>
