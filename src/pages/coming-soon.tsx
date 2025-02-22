@@ -56,10 +56,6 @@ export default function ComingSoonPage() {
       </div>
       <h2 className="text-5xl font-bold mt-10 relative z-10">COMING SOON</h2>
       <p className="text-lg mt-2 relative z-10">Our website is under construction. Stay tuned!</p>
-      <div className="mt-6 flex items-center relative z-10">
-        <input type="email" placeholder="Subscribe Newsletter" className="p-2 rounded-md text-black" />
-        <button className="ml-2 bg-green-500 p-2 rounded-md">✔</button>
-      </div>
     </div>
   );
 }
