@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Head from 'next/head';
 
 export default function ComingSoonPage() {
-  const targetDate = new Date('2025-02-24T15:00:00').getTime();
+  const targetDate = new Date('2025-02-24T22:00:00').getTime();
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
