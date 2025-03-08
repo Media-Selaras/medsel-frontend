@@ -1,5 +1,6 @@
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
+import Link from 'next/link'
 
 
 function classNames(...classes : string[]) {
@@ -43,13 +44,13 @@ export default function Informasi() {
             <Menu.Item>
               {({ active }) => (
                 <a
-                  href="#"
+                  href="/InfoEvent"
                   className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm'
                   )}
                 >
-                  Koperasi Selaras
+                  Event
                 </a>
               )}
             </Menu.Item>
@@ -62,21 +63,22 @@ export default function Informasi() {
                     'block px-4 py-2 text-sm'
                   )}
                 >
-                  Info Magang
+                  Magang
                 </a>
               )}
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <a
-                  href="#"
-                  className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
-                  )}
-                >
-                  Info Beasiswa
-                </a>
+                <Link href="/InfoBeasiswa">
+                  <a
+                    className={classNames(
+                      active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                      'block px-4 py-2 text-sm'
+                    )}
+                  >
+                    Beasiswa
+                  </a>
+                </Link>
               )}
             </Menu.Item>
           </div>

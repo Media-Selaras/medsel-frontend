@@ -6,7 +6,7 @@ import type { AppProps } from 'next/app';
 import React from 'react';
 import Comingsoonpage from './coming-soon';
 
-const isComingSoon = true; // Ganti ke false jika ingin menampilkan halaman utama
+const isComingSoon = false; // Ganti ke false jika ingin menampilkan halaman utama
 
 function MyApp({ Component, pageProps }: AppProps) {
   React.useEffect(() => {

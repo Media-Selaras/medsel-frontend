@@ -2,6 +2,7 @@ import React from "react";
 export const komunitas = [
   {
     src: "/img/landingpage/komunitas1.png",
+    name: "Komunitas 1",
   },
   {
     src: "/img/landingpage/komunitas2.png",
