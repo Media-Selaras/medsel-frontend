@@ -22,11 +22,30 @@ type Inputs = {
   subjek: string;
 };
 
+const Popup = ({ onClose }: { onClose: () => void }) => {
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+      <div className="bg-white p-8 rounded-lg shadow-lg relative">
+        <h2 className="text-2xl font-bold mb-4"><b>Welcome to Media Selaras!</b></h2>
+        <p className="mb-4">Thank you for visiting the Media Selaras website. This website is still under repair and development!</p>
+        <button
+          onClick={onClose}
+          className="bg-[#E77E49] text-white px-4 py-2 rounded-md"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  );
+};
+
+
 export default function Landingpage() {
   const [blogs, setBlogs] = useState([]);
   const [instagrams, setInstagrams] = useState([]);
   const [spotifies, setSpotifies] = useState<any[]>([]);
   const [events, setEvents] = useState<any[]>([]);
+  const [showPopup, setShowPopup] = useState(true);
   const { register, handleSubmit, getValues } = useForm<Inputs>();
 
   const onSubmit = (data: any) => {
@@ -95,6 +114,12 @@ export default function Landingpage() {
     getInstagram();
     getSpotify();
     getEvents();
+
+    const timer = setTimeout(() => {
+      setShowPopup(true);
+    }, 3000); // Show popup after 3 seconds
+
+    return () => clearTimeout(timer);
   }, []);
 
   const calculateTimeLeft = (date: string) => {
@@ -123,63 +148,64 @@ export default function Landingpage() {
       <main>
         <Navbar />
         <div className="w-full min-h-screen bg-white overflow-hidden">
+          {showPopup && <Popup onClose={() => setShowPopup(false)} />}
           {/* Carousel Wadah Pengedukasian */}
-            <section className="Landing Page">
+          <section className="Landing Page">
             <div
               className="w-full h-screen flex flex-col justify-center items-center text-center"
               style={{
-              backgroundImage: "url('/img/Medsel3.png')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              color: "#FFFF", // Changed text color to orange
-              borderRadius: "0px 0px 150px 150px", // Added border radius
+                backgroundImage: "url('/img/Medsel3.png')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                color: "#FFFF", // Changed text color to orange
+                borderRadius: "0px 0px 150px 150px", // Added border radius
               }}
             >
               <h1 className="font-bold lg:text-5xl text-3xl lg:leading-snug">
-              Selamat Datang di Official Website
+                Selamat Datang di Official Website
               </h1>
               <h2 className="font-bold lg:text-4xl text-2xl mt-4">
-              MEDIA SELARAS 2025
+                MEDIA SELARAS 2025
               </h2>
               <div className="flex mt-8">
-              <button className="bg-[#40005c] text-white px-6 py-3 rounded-md mr-4">
-                AKTIVITAS KOMUNITAS
-              </button>
-              <button className="bg-[#40005c] text-white px-6 py-3 rounded-md">
-                PARTNERSHIP/COLLABORATION
-              </button>
+                <button className="bg-[#40005c] text-white px-6 py-3 rounded-md mr-4">
+                  AKTIVITAS KOMUNITAS
+                </button>
+                <button className="bg-[#40005c] text-white px-6 py-3 rounded-md">
+                  PARTNERSHIP/COLLABORATION
+                </button>
               </div>
             </div>
-            </section>
+          </section>
 
-            <section className="Komunitas">
+          <section className="Komunitas">
             <Animation className="lg:py-16 flex max-w-7xl flex-col m-auto lg:px-14 p-7">
               <h1 className="sm:text-center md:text-3xl text-xl w-3/4 sm:w-full pb-10 font-bold lg:pb-6">
-              Komunitas yang telah berkolaborasi dengan Media Selaras
+                Komunitas yang telah berkolaborasi dengan Media Selaras
               </h1>
               <div className="grid sm:grid-cols-7 grid-cols-2 gap-6 text-center ">
-              {komunitas.map(({ src, name }, index) => (
-              <div key={index} className="relative group">
-              <NextImage
-                height="50%"
-                width="100%"
-                src={src}
-                alt="landingpage"
-                className="cursor-pointer group-hover:opacity-75 transition-opacity duration-300"
-                onClick={() => alert(`Komunitas: ${name}`)}
-              />
-              <div className="absolute inset-0 bg-orange-500 opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <span className="text-white font-bold">{name}</span>
-              </div>
-              </div>
-              ))}
+                {komunitas.map(({ src, name }, index) => (
+                  <div key={index} className="relative group">
+                    <NextImage
+                      height="50%"
+                      width="100%"
+                      src={src}
+                      alt="landingpage"
+                      className="cursor-pointer group-hover:opacity-75 transition-opacity duration-300"
+                      onClick={() => alert(`Komunitas: ${name}`)}
+                    />
+                    <div className="absolute inset-0 bg-orange-500 opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <span className="text-white font-bold">{name}</span>
+                    </div>
+                  </div>
+                ))}
               </div>
               <h3 className="text-center sm:text-base text-lg py-8 text-orange-500 font-bold">
-              dan 50+ lainnya
+                dan 50+ lainnya
               </h3>
             </Animation>
-            </section>
+          </section>
 
           <section className="Tentang Medsel">
             <Animation className="relative w-full">
