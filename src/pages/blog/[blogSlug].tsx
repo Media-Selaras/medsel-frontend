@@ -9,7 +9,7 @@ import Footer from '../../components/NavbarFooter/Footer'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
-import { Date } from "@/lib/date";
+import { formatDate } from "@/lib/date";
 
 export default function BlogDetail() {
     const router = useRouter()
@@ -67,7 +67,7 @@ export default function BlogDetail() {
                     <div className='px-8 py-12 md:px-20'>
                         <div className='text-center'>
                             <h1 className='text-3xl font-semibold'>{blog.title}</h1>
-                            <p className='mt-6 text-slate-400'>{blog.day + ", " + Date(blog.date)}</p>
+                            <p className='mt-6 text-slate-400'>{blog.day + ", " + formatDate(blog.date)}</p>
                             <p className='text-slate-400'>Creator: {blog.author}</p>
                         </div>
                         <div className='pt-10'>
