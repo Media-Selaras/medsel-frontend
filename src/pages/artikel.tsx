@@ -7,7 +7,7 @@ import Link from "next/link";
 import Footer from "@/components/NavbarFooter/Footer";
 import {Animation} from "@/components/Animation"
 import axios from "axios";
-import { Date } from "@/lib/date";
+import { formatDate } from "@/lib/date";
 export default function Artikel() {
   const [ isLoading, setLoading] = useState<boolean>(true)
   const [ blogs, setBlogs ] = useState<any[]>([])
@@ -73,7 +73,7 @@ export default function Artikel() {
                   </div>
                   <div className="sm:w-7/12 hidden sm:flex sm:gap-y-3 sm:flex-col lg:py-4 self-center">
                     <h2 className="text-base sm:text-xs md:text-base lg:text-xl font-extralight text-slate-500 pb-1">
-                      { blog.day + ", " + Date(blog.date) }
+                      { blog.day + ", " + formatDate(blog.date) }
                     </h2>
                     <p className="sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold leading-10 sm:pb-5 ">
                       { blog.title }
@@ -111,7 +111,7 @@ export default function Artikel() {
                                     </div>
                                     <div className='w-[80%] sm:w-full flex flex-col justify-between pl-3 sm:pl-0 sm:my-3 sm:gap-2'>
                                         <h1 className='text-sm font-semibold md:text-xl lg:text-2xl'>{blogData.title}</h1>
-                                        <p className='text-sm font-extralight sm:order-first md:text-base lg:text-xl'>{blogData.day + ", " + Date(blogData.date)}</p>
+                                        <p className='text-sm font-extralight sm:order-first md:text-base lg:text-xl'>{blogData.day + ", " + formatDate(blogData.date)}</p>
                                         <p className='hidden sm:block text-gray-500 lg:text-lg'>{blogData.description}</p>
                                     </div>
                                   </div>
